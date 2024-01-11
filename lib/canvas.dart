@@ -34,8 +34,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
   String currentText = "";
   Color currentColor = Colors.black;
   Color pickerColor = Colors.black;
-  double _left = 0.0;
-  double _top = 0.0;
+  late double _left;
+  late double _top;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,24 @@ class _CanvasScreenState extends State<CanvasScreen> {
       });
     }
 
+    void onDelete(TextProperties item) {
+      setState(() {
+        textList.remove(item);
+        activeItem == false;
+      });
+    }
+
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButton: activeItem == true
+          ? FloatingActionButton(
+              onPressed: () {
+                // onDelete()
+              },
+              backgroundColor: Colors.red,
+              child: Icon(Icons.delete, color: Colors.white),
+            )
+          : Container(),
       backgroundColor: Colors.grey[800],
       body: Stack(
         children: [
@@ -61,7 +78,8 @@ class _CanvasScreenState extends State<CanvasScreen> {
                 ),
                 child: Stack(
                   children: [
-                    ...textList.map(buildText).toList(),
+                    ...textList.map((e) => MyWidget(textProperties: e))
+                    // ...textList.map(buildText).toList(),
 
                     // Positioned(
                     //   left: _left,
@@ -451,7 +469,74 @@ class _CanvasScreenState extends State<CanvasScreen> {
     );
   }
 
-  Widget buildText(TextProperties e) {
+  // Widget buildText(TextProperties e) {
+  //   return Positioned(
+  //     top: _top,
+  //     left: _left,
+  //     child: GestureDetector(
+  //       onPanUpdate: (details) {
+  //         setState(() {
+  //           _left = max(0, _left + details.delta.dx);
+  //           _top = max(0, _top + details.delta.dy);
+  //         });
+  //       },
+  //       onTap: () {
+  //         for (TextProperties item in textList) {
+  //           loadValue(item);
+  //           activeItem = true;
+  //           print("ho rha hai tap");
+  //           print(activeItem);
+  //         }
+  //       },
+  //       child: Text(e.text,
+  //           style: GoogleFonts.getFont(
+  //             e.fontfamily,
+  //           ).copyWith(color: e.color, fontSize: e.fontSize)),
+  //     ),
+  //   );
+  // }
+  loadValue(TextProperties item) {
+    _textcontroller.text = item.text;
+    currentColor = item.color;
+    selectedFont = item.fontfamily;
+    _sizecontroler.text = item.fontSize.toString();
+    activeItem = true;
+    print(activeItem);
+  }
+
+  updateValue(TextProperties item) {
+    setState(() {
+      item.text = currentText;
+      item.fontSize = currentSize;
+      item.color = currentColor;
+      item.fontfamily = selectedFont;
+    });
+  }
+}
+
+class MyWidget extends StatefulWidget {
+  final TextProperties textProperties;
+
+  const MyWidget({Key? key, required this.textProperties}) : super(key: key);
+
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  late double _left;
+  late double _top;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the position based on the widget's properties
+    _left = widget.textProperties.position.dx;
+    _top = widget.textProperties.position.dy;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Positioned(
       top: _top,
       left: _left,
@@ -463,36 +548,27 @@ class _CanvasScreenState extends State<CanvasScreen> {
           });
         },
         onTap: () {
-          for (TextProperties item in textList) {
-            loadValue(item);
-            activeItem = true;
-            print("ho rha hai tap");
-            print(activeItem);
-          }
+          useFuctionfromCanvas();
         },
-        child: Text(e.text,
-            style: GoogleFonts.getFont(
-              e.fontfamily,
-            ).copyWith(color: e.color, fontSize: e.fontSize)),
+        child: Text(
+          widget.textProperties.text,
+          style: GoogleFonts.getFont(
+            widget.textProperties.fontfamily,
+          ).copyWith(
+              color: widget.textProperties.color,
+              fontSize: widget.textProperties.fontSize),
+        ),
       ),
     );
   }
 
-  loadValue(TextProperties item) {
-    _textcontroller.text = item.text;
-    currentColor = item.color;
-    selectedFont = item.fontfamily;
-    _sizecontroler.text = item.fontSize.toString();
+  void useFuctionfromCanvas() {
+    _CanvasScreenState canvasScreenInstance = _CanvasScreenState();
+    canvasScreenInstance.loadValue(TextProperties(
+        text: widget.textProperties.text,
+        fontSize: widget.textProperties.fontSize,
+        color: widget.textProperties.color,
+        fontfamily: widget.textProperties.fontfamily,
+        position: Offset(_top, _left)));
   }
-
-  updateValue(TextProperties item) {
-    setState(() {
-      item.text = currentText;
-      item.fontSize = currentSize;
-      item.color = currentColor;
-      item.fontfamily = selectedFont;
-    });
-  }
-
-// double.parse('${_sizecontroler.text}')
 }
