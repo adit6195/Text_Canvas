@@ -97,6 +97,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                 SizedBox(
                   width: 200,
                   child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1,
+                    maxLines: 5,
                     onChanged: (value) {
                       currentText = value;
                     },
@@ -545,6 +548,9 @@ class _CanvasScreenState extends State<CanvasScreen> {
                       height: 5,
                     ),
                     TextField(
+                      keyboardType: TextInputType.multiline,
+                      minLines: 1,
+                      maxLines: 5,
                       controller: textcontroller,
                       // onChanged: (value) {
                       //   setState(() {
