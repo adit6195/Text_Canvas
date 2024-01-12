@@ -298,13 +298,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                       color: currentColor,
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(2.7),
-                    child: Icon(
-                      Icons.colorize,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: Padding(
+                      padding: const EdgeInsets.all(2.7),
+                      child: currentColor == Colors.white
+                          ? const Icon(
+                              Icons.colorize,
+                              color: Colors.black,
+                            )
+                          : const Icon(
+                              Icons.colorize,
+                              color: Colors.white,
+                            )),
                 ),
               ),
               const SizedBox(
@@ -317,13 +321,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.white
+                        ? const Icon(Icons.check, color: Colors.black)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -335,13 +341,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.black
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -353,13 +361,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.red
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -371,13 +381,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.orange,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.orange,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.orange
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -389,13 +401,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.yellow,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.yellow,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.yellow
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -407,13 +421,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.green
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
               const SizedBox(
                 width: 5,
@@ -425,13 +441,15 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   });
                 },
                 child: Container(
-                  height: 28,
-                  width: 28,
-                  decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white)),
-                ),
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white)),
+                    child: currentColor == Colors.blue
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : Container()),
               ),
             ],
           ),
@@ -711,12 +729,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                       color: selectedColor,
                                       shape: BoxShape.circle,
                                       border: Border.all(color: Colors.white)),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(2.7),
-                                    child: Icon(
-                                      Icons.colorize,
-                                      color: Colors.white,
-                                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.7),
+                                    child: selectedColor == Colors.white
+                                        ? const Icon(
+                                            Icons.colorize,
+                                            color: Colors.black,
+                                          )
+                                        : const Icon(
+                                            Icons.colorize,
+                                            color: Colors.white,
+                                          ),
                                   ),
                                 ),
                               ),
@@ -730,13 +753,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                   });
                                 },
                                 child: Container(
-                                  height: 28,
-                                  width: 28,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.white)),
-                                ),
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: selectedColor == Colors.white
+                                        ? const Icon(Icons.check,
+                                            color: Colors.black)
+                                        : Container()),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -748,13 +775,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                   });
                                 },
                                 child: Container(
-                                  height: 28,
-                                  width: 28,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.white)),
-                                ),
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: selectedColor == Colors.black
+                                        ? const Icon(Icons.check,
+                                            color: Colors.white)
+                                        : Container()),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -766,13 +797,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                   });
                                 },
                                 child: Container(
-                                  height: 28,
-                                  width: 28,
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.white)),
-                                ),
+                                    height: 28,
+                                    width: 28,
+                                    decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: selectedColor == Colors.red
+                                        ? const Icon(Icons.check,
+                                            color: Colors.white)
+                                        : Container()),
                               ),
                             ]),
                             const SizedBox(
@@ -790,14 +825,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                     });
                                   },
                                   child: Container(
-                                    height: 28,
-                                    width: 28,
-                                    decoration: BoxDecoration(
-                                        color: Colors.orange,
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: Colors.white)),
-                                  ),
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                          color: Colors.orange,
+                                          shape: BoxShape.circle,
+                                          border:
+                                              Border.all(color: Colors.white)),
+                                      child: selectedColor == Colors.orange
+                                          ? const Icon(Icons.check,
+                                              color: Colors.white)
+                                          : Container()),
                                 ),
                                 const SizedBox(
                                   width: 5,
@@ -809,14 +847,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                     });
                                   },
                                   child: Container(
-                                    height: 28,
-                                    width: 28,
-                                    decoration: BoxDecoration(
-                                        color: Colors.yellow,
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: Colors.white)),
-                                  ),
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                          color: Colors.yellow,
+                                          shape: BoxShape.circle,
+                                          border:
+                                              Border.all(color: Colors.white)),
+                                      child: selectedColor == Colors.yellow
+                                          ? const Icon(Icons.check,
+                                              color: Colors.white)
+                                          : Container()),
                                 ),
                                 const SizedBox(
                                   width: 5,
@@ -828,14 +869,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                     });
                                   },
                                   child: Container(
-                                    height: 28,
-                                    width: 28,
-                                    decoration: BoxDecoration(
-                                        color: Colors.green,
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: Colors.white)),
-                                  ),
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          shape: BoxShape.circle,
+                                          border:
+                                              Border.all(color: Colors.white)),
+                                      child: selectedColor == Colors.green
+                                          ? const Icon(Icons.check,
+                                              color: Colors.white)
+                                          : Container()),
                                 ),
                                 const SizedBox(
                                   width: 5,
@@ -847,14 +891,17 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                     });
                                   },
                                   child: Container(
-                                    height: 28,
-                                    width: 28,
-                                    decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        shape: BoxShape.circle,
-                                        border:
-                                            Border.all(color: Colors.white)),
-                                  ),
+                                      height: 28,
+                                      width: 28,
+                                      decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          shape: BoxShape.circle,
+                                          border:
+                                              Border.all(color: Colors.white)),
+                                      child: selectedColor == Colors.blue
+                                          ? const Icon(Icons.check,
+                                              color: Colors.white)
+                                          : Container()),
                                 ),
                               ],
                             ),
